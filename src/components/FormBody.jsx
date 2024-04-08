@@ -6,45 +6,41 @@ import StepFour from './StepFour';
 import StepFive from './StepFive';
 
 function FormBody({ formCurrentStep = 1 }) {
+    let children = null;
+
     switch (formCurrentStep) {
         case 1:
-            return (
-                <div className="w-full my-10">
-                    <StepOne />
-                </div>
-            );
+            children = <StepOne />
+            break;
 
         case 2:
-            return (
-                <div className="my-10">
-                    <StepTwo />
-                </div>
-            );
-
+            children = <StepTwo />
+            break;
+            
         case 3:
-            return (
-                <div className="my-10">
-                    <StepThree />
-                </div>
-            );
+            children = <StepThree />
+            break;
+            
 
         case 4:
-            return (
-                <div className="my-10">
-                    <StepFour />
-                </div>
-            );
+            children = <StepFour />
+            break;
+            
 
         case 5:
-            return (
-                <div className="my-10">
-                    <StepFive />
-                </div>
-            );
+            children = <StepFive />
+            break;
+            
 
         default:
             break;
     }
+
+    return (
+        <div className='w-full mt-6'>
+            {children}
+        </div>
+    )
 }
 
 export default FormBody;

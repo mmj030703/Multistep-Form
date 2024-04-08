@@ -12,8 +12,6 @@ function MultistepForm({ steps, formBody: FormBody }) {
     const [showLoading, setShowLoading] = useState(false);
 
     const handleClick = async (button) => {
-        console.log('clicked');
-
         if (formCurrentStep !== steps && button === 'continue') {
             setFormCurrentStep((prevState) => prevState + 1);
         }
@@ -38,14 +36,11 @@ function MultistepForm({ steps, formBody: FormBody }) {
     if (showLearningPathRecommendations) return <LearningPathRecommendations />
 
     return (
-        <div className="flex justify-center mt-[3rem]">
-            <div className="flex flex-col items-center w-[1100px]">
-                <ProgressBar steps={steps} formCurrentStep={formCurrentStep} />
+        <div className="flex justify-center mt-[3.5rem] mb-5 px-4 sm:px-10">
+            <div className="flex flex-col items-center w-[1050px]">
+                <ProgressBar steps={steps} formCurrentStep={formCurrentStep} handleClick={handleClick} />
                 <FormBody formCurrentStep={formCurrentStep} />
-                <div className="w-full px-20 flex justify-between">
-                    <Button buttonText="Previous" onClick={() => handleClick('previous')} />
-                    <Button buttonText="Continue" onClick={() => handleClick(formCurrentStep !== steps ? 'continue' : 'submit')} />
-                </div>
+                <Button buttonText="Continue" onClick={() => handleClick(formCurrentStep !== steps ? 'continue' : 'submit')} />
             </div>
         </div>
     )
