@@ -5,11 +5,13 @@ import Button from "./Button";
 import LearningPathRecommendations from "./LearningPathRecommendations";
 import ProgressBar from "./ProgressBar";
 import Loader from "./Loader";
+import { useSelector } from "react-redux";
 
 function MultistepForm({ steps, formBody: FormBody }) {
     const [formCurrentStep, setFormCurrentStep] = useState(1);
     const [showLearningPathRecommendations, setShowLearningPathRecommendations] = useState(false);
     const [showLoading, setShowLoading] = useState(false);
+    const formData = useSelector(state => state.multiStepForm.formData);
 
     const handleClick = async (button) => {
         if (formCurrentStep !== steps && button === 'continue') {
@@ -26,7 +28,14 @@ function MultistepForm({ steps, formBody: FormBody }) {
     };
 
     const handleSubmit = async () => {
-        const response = await fetch('https://api.restful-api.dev/objects');
+        const response = await fetch('https://api.restful-api.dev/objects', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: "formData", data: formData })
+        });
         const data = await response.json();
         setShowLoading(false);
         setShowLearningPathRecommendations(true);
@@ -36,7 +45,7 @@ function MultistepForm({ steps, formBody: FormBody }) {
     if (showLearningPathRecommendations) return <LearningPathRecommendations />
 
     return (
-        <div className="flex justify-center mt-[3.5rem] mb-5 px-4 sm:px-10">
+        <div className="flex justify-center mt-[3.5rem] mb-7 px-4 sm:px-10">
             <div className="flex flex-col items-center w-[1050px]">
                 <ProgressBar steps={steps} formCurrentStep={formCurrentStep} handleClick={handleClick} />
                 <FormBody formCurrentStep={formCurrentStep} />
