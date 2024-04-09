@@ -3,7 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const multistepFormSlice = createSlice({
     name: 'multistepFormSlice',
     initialState: {
-        formData: {},
+        formData: {
+            stepOne: null,
+            stepTwo: null,
+            stepFour: null,
+        },
         optionSelected: false
     },
     reducers: {
