@@ -46,6 +46,7 @@ cd Multistep-Form
 
 ### Install NPM packages:
 
+Using npm:
 ```
 npm install
 ```
@@ -58,14 +59,29 @@ yarn install
 
 ### Start the project:
 
+Using npm: 
 ```
-npm start
+npm run dev
 ```
 
 Using Yarn:
 
 ```
-yarn start
+yarn dev
+```
+
+### Create the Production Build:
+
+Using npm:
+
+```
+npm run build
+```
+
+Using Yarn:
+
+```
+yarn build
 ```
 
 ## Usage
